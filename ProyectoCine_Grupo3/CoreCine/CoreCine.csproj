@@ -60,7 +60,9 @@
     <Compile Include="CinePelicula.cs">
       <DependentUpon>General.tt</DependentUpon>
     </Compile>
+    <Compile Include="DACinePelicula.cs" />
     <Compile Include="DADirector.cs" />
+    <Compile Include="DAFuncion.cs" />
     <Compile Include="Director.cs">
       <DependentUpon>General.tt</DependentUpon>
     </Compile>

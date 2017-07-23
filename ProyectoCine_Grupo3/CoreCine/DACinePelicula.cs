@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace CoreCine
 {
-    public class DADirector
+    public class DACinePelicula
     {
-        static public List<Director> listadoDirector()
+        static public List<CinePelicula> listadoCinePelicula()
         {
-            List<Director> listado = new List<Director>();
+            List<CinePelicula> listado = new List<CinePelicula>();
             using (var data = new CineDBEntities())
             {
-                return data.Director.ToList();
+                return data.CinePelicula.ToList();
             }
         }
 
-        static public bool RegistrarDirector(Director Director)
+        static public bool RegistrarCinePelicula(CinePelicula CinePelicula)
         {
             bool exito = true;
             try
             {
                 using (var data = new CineDBEntities())
                 {
-                    data.Director.Add(Director);
+                    data.CinePelicula.Add(CinePelicula);
                     data.SaveChanges();
                 }
             }
@@ -37,16 +37,17 @@ namespace CoreCine
             return exito;
         }
 
-        static public bool ActualizarDirector(Director Director)
+        static public bool ActualizarCinePelicula(CinePelicula CinePelicula)
         {
             bool exito = true;
             try
             {
                 using (var data = new CineDBEntities())
                 {
-                    Director actual = data.Director.Where(x => x.CodDirector == Director.CodDirector).FirstOrDefault();
-                    actual.CodDirector = Director.CodDirector;
-                    actual.NombreDirector = Director.NombreDirector;
+                    CinePelicula actual = data.CinePelicula.Where(x => x.CodCine == CinePelicula.CodCine).FirstOrDefault();
+                    actual.CodCine = CinePelicula.CodCine;
+                    actual.CodPelicula = CinePelicula.CodPelicula;
+                    actual.EnCartelera = CinePelicula.EnCartelera;
                     data.SaveChanges();
                 }
 
@@ -58,15 +59,15 @@ namespace CoreCine
             }
             return exito;
         }
-        static public bool EliminarDirector(Director Director)
+        static public bool EliminarCinePelicula(CinePelicula CinePelicula)
         {
             bool exito = true;
             try
             {
                 using (var data = new CineDBEntities())
                 {
-                    Director actual = data.Director.Where(x => x.CodDirector == Director.CodDirector).FirstOrDefault();
-                    data.Director.Remove(actual);
+                    CinePelicula actual = data.CinePelicula.Where(x => x.CodCine == CinePelicula.CodCine).FirstOrDefault();
+                    data.CinePelicula.Remove(actual);
                     data.SaveChanges();
                 }
             }

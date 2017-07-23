@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace CoreCine
 {
-    public class DADirector
+    public class DAFuncion
     {
-        static public List<Director> listadoDirector()
+        static public List<Funcion> listadoFuncion()
         {
-            List<Director> listado = new List<Director>();
+            List<Funcion> listado = new List<Funcion>();
             using (var data = new CineDBEntities())
             {
-                return data.Director.ToList();
+                return data.Funcion.ToList();
             }
         }
 
-        static public bool RegistrarDirector(Director Director)
+        static public bool RegistrarFuncion(Funcion Funcion)
         {
             bool exito = true;
             try
             {
                 using (var data = new CineDBEntities())
                 {
-                    data.Director.Add(Director);
+                    data.Funcion.Add(Funcion);
                     data.SaveChanges();
                 }
             }
@@ -37,16 +37,20 @@ namespace CoreCine
             return exito;
         }
 
-        static public bool ActualizarDirector(Director Director)
+        static public bool ActualizarAlumno(Funcion Funcion)
         {
             bool exito = true;
             try
             {
                 using (var data = new CineDBEntities())
                 {
-                    Director actual = data.Director.Where(x => x.CodDirector == Director.CodDirector).FirstOrDefault();
-                    actual.CodDirector = Director.CodDirector;
-                    actual.NombreDirector = Director.NombreDirector;
+                    Funcion actual = data.Funcion.Where(x => x.CodFuncion == Funcion.CodFuncion).FirstOrDefault();
+                    actual.CodFuncion = Funcion.CodFuncion;
+                    actual.HoraInicio = Funcion.HoraInicio;
+                    actual.HoraFin = Funcion.HoraFin;
+                    actual.CodPelicula = Funcion.CodPelicula;
+                    actual.FechaFuncion = Funcion.FechaFuncion;
+                    actual.Precio = Funcion.Precio;
                     data.SaveChanges();
                 }
 
@@ -58,15 +62,15 @@ namespace CoreCine
             }
             return exito;
         }
-        static public bool EliminarDirector(Director Director)
+        static public bool EliminarFuncion(Funcion Funcion)
         {
             bool exito = true;
             try
             {
                 using (var data = new CineDBEntities())
                 {
-                    Director actual = data.Director.Where(x => x.CodDirector == Director.CodDirector).FirstOrDefault();
-                    data.Director.Remove(actual);
+                    Funcion actual = data.Funcion.Where(x => x.CodFuncion == Funcion.CodFuncion).FirstOrDefault();
+                    data.Funcion.Remove(actual);
                     data.SaveChanges();
                 }
             }
