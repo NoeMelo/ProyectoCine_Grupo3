@@ -61,6 +61,8 @@
       <DependentUpon>General.tt</DependentUpon>
     </Compile>
     <Compile Include="DADirector.cs" />
+    <Compile Include="DAInterprete.cs" />
+    <Compile Include="DAPedido.cs" />
     <Compile Include="Director.cs">
       <DependentUpon>General.tt</DependentUpon>
     </Compile>
